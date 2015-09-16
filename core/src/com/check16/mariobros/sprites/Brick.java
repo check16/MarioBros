@@ -25,7 +25,7 @@ public class Brick extends InteractiveTileObject{
         getCell().setTile(null);
         Hud.addScore(200);
 
-
+        //Probamos el git
         System.out.println("Posicion: " + ((int)(body.getPosition().x * MarioBros.PPM / 16)) + ", " + (int)(body.getPosition().y * MarioBros.PPM / 16));
     }
 
