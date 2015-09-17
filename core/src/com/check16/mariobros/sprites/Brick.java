@@ -1,6 +1,7 @@
 package com.check16.mariobros.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
@@ -25,7 +26,8 @@ public class Brick extends InteractiveTileObject{
         getCell().setTile(null);
         Hud.addScore(200);
 
-        //Probamos el gitt
+        MarioBros.manager.get("audio/sounds/breakblock.wav", Music.class).play();
+
         System.out.println("Posicion: " + ((int)(body.getPosition().x * MarioBros.PPM / 16)) + ", " + (int)(body.getPosition().y * MarioBros.PPM / 16));
     }
 
