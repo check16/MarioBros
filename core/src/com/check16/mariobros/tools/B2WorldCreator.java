@@ -9,15 +9,20 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.check16.mariobros.MarioBros;
 import com.check16.mariobros.screens.PlayScreen;
 import com.check16.mariobros.sprites.Brick;
 import com.check16.mariobros.sprites.Coin;
+import com.check16.mariobros.sprites.Goomba;
 
 /**
  * Created by Antonio on 05/09/2015.
  */
 public class B2WorldCreator {
+
+    private Array<Goomba> goombas;
+
     public B2WorldCreator(PlayScreen screen) {
 
         World world = screen.getWorld();
@@ -62,7 +67,7 @@ public class B2WorldCreator {
         for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-           new Brick(screen, rect);
+            new Brick(screen, rect);
         }
 
         //create coin bodies/fixtures
@@ -72,5 +77,19 @@ public class B2WorldCreator {
             new Coin(screen, rect);
 
         }
+
+        // Create all goombas
+        goombas = new Array<Goomba>();
+        for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            goombas.add(new Goomba(screen, rect.getX() / MarioBros.PPM, rect.getY() / MarioBros.PPM));
+
+        }
+
+    }
+
+    public Array<Goomba> getGoombas() {
+        return goombas;
     }
 }

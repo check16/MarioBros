@@ -6,14 +6,19 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.utils.Array;
 import com.check16.mariobros.MarioBros;
 import com.check16.mariobros.sprites.Enemy;
+import com.check16.mariobros.sprites.Goomba;
 import com.check16.mariobros.sprites.InteractiveTileObject;
+import com.check16.mariobros.sprites.Mario;
 
 /**
  * Created by Antonio on 07/09/2015.
  */
 public class WorldContactListener implements ContactListener {
+
+
 
     public void beginContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
@@ -45,6 +50,13 @@ public class WorldContactListener implements ContactListener {
                 break;
             case MarioBros.MARIO_BIT | MarioBros.ENEMY_BIT:
                 Gdx.app.log("MARIO","DIED");
+                break;
+            case MarioBros.ENEMY_BIT | MarioBros.ENEMY_BIT:
+                ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
+                ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
+                break;
+
+
         }
     }
 
