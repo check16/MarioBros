@@ -1,6 +1,7 @@
 package com.check16.mariobros.sprites;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -44,7 +45,9 @@ public class Goomba extends Enemy {
             world.destroyBody(b2body);
             destroyed = true;
             setRegion(new TextureRegion(screen.getAtlas().findRegion("goomba"), 32, 0, 16, 16));
+            stateTime = 0;
         } else if (!destroyed) {
+            b2body.setLinearVelocity(velocity);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion(walkAnimation.getKeyFrame(stateTime, true));
         }
@@ -53,7 +56,7 @@ public class Goomba extends Enemy {
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(64 / MarioBros.PPM, 64 / MarioBros.PPM);
+        bdef.position.set(getX(), getY());
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
@@ -69,7 +72,7 @@ public class Goomba extends Enemy {
                 MarioBros.MARIO_BIT;
 
         fdef.shape = cshape;
-        b2body.createFixture(fdef);
+        b2body.createFixture(fdef).setUserData(this);
 
         //Creamos la cabeza
         PolygonShape head = new PolygonShape();
@@ -84,6 +87,12 @@ public class Goomba extends Enemy {
         fdef.restitution = 0.5f;
         fdef.filter.categoryBits = MarioBros.ENEMY_HEAD_BIT;
         b2body.createFixture(fdef).setUserData(this);
+    }
+
+    public void draw(Batch batch) {
+        if(!destroyed || stateTime< 1) {
+            super.draw(batch);
+        }
     }
 
     @Override
