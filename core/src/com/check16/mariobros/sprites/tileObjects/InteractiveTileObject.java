@@ -1,4 +1,4 @@
-package com.check16.mariobros.sprites;
+package com.check16.mariobros.sprites.tileObjects;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;

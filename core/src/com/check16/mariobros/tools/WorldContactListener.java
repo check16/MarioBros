@@ -6,12 +6,9 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.utils.Array;
 import com.check16.mariobros.MarioBros;
-import com.check16.mariobros.sprites.Enemy;
-import com.check16.mariobros.sprites.Goomba;
-import com.check16.mariobros.sprites.InteractiveTileObject;
-import com.check16.mariobros.sprites.Mario;
+import com.check16.mariobros.sprites.enemies.Enemy;
+import com.check16.mariobros.sprites.tileObjects.InteractiveTileObject;
 
 /**
  * Created by Antonio on 07/09/2015.

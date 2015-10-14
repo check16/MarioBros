@@ -1,18 +1,17 @@
-package com.check16.mariobros.sprites;
+package com.check16.mariobros.sprites.items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.World;
 import com.check16.mariobros.MarioBros;
 import com.check16.mariobros.scenes.Hud;
 import com.check16.mariobros.screens.PlayScreen;
+import com.check16.mariobros.sprites.tileObjects.InteractiveTileObject;
 
 /**
  * Created by Antonio on 05/09/2015.
  */
-public class Brick extends InteractiveTileObject{
+public class Brick extends InteractiveTileObject {
 
     public Brick(PlayScreen screen, Rectangle bounds) {
 

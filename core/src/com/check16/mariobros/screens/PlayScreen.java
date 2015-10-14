@@ -18,8 +18,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.check16.mariobros.MarioBros;
 import com.check16.mariobros.scenes.Hud;
-import com.check16.mariobros.sprites.Enemy;
-import com.check16.mariobros.sprites.Goomba;
+import com.check16.mariobros.sprites.enemies.Enemy;
 import com.check16.mariobros.sprites.Mario;
 import com.check16.mariobros.tools.B2WorldCreator;
 import com.check16.mariobros.tools.WorldContactListener;
@@ -104,8 +103,11 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
-        for(Enemy enemy : creator.getGoombas())
+        for (Enemy enemy : creator.getGoombas()) {
             enemy.update(dt);
+            if (enemy.getX() < player.getX() + 224 / MarioBros.PPM)
+                enemy.b2body.setActive(true);
+        }
         hud.update(dt);
 
         gameCam.position.x = player.b2body.getPosition().x;
@@ -116,13 +118,13 @@ public class PlayScreen implements Screen {
 
     public void hanldeInput(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.b2body.applyLinearImpulse(new Vector2(0,4f), player.b2body.getWorldCenter(),true);
+            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2) {
-            player.b2body.applyLinearImpulse(new Vector2(0.1f,0), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2) {
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f,0), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
         }
     }
 
@@ -140,7 +142,7 @@ public class PlayScreen implements Screen {
         game.sb.setProjectionMatrix(gameCam.combined);
         game.sb.begin();
         player.draw(game.sb);
-        for(Enemy enemy : creator.getGoombas())
+        for (Enemy enemy : creator.getGoombas())
             enemy.draw(game.sb);
 
         game.sb.end();
