@@ -1,12 +1,15 @@
-package com.check16.mariobros.sprites.items;
+package com.check16.mariobros.sprites.tileObjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.check16.mariobros.MarioBros;
 import com.check16.mariobros.scenes.Hud;
 import com.check16.mariobros.screens.PlayScreen;
+import com.check16.mariobros.sprites.items.ItemDef;
+import com.check16.mariobros.sprites.items.Mushroom;
 import com.check16.mariobros.sprites.tileObjects.InteractiveTileObject;
 
 /**
@@ -28,8 +31,10 @@ public class Coin extends InteractiveTileObject {
         Gdx.app.log("Coin", "Collision");
         if(getCell().getTile().getId() == BLANK_COIN)
             MarioBros.manager.get("audio/sounds/bump.wav", Music.class).play();
-        else
+        else {
             MarioBros.manager.get("audio/sounds/coin.wav", Music.class).play();
+            screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 16 / MarioBros.PPM), Mushroom.class));
+        }
         getCell().setTile(tileSet.getTile(BLANK_COIN));
         Hud.addScore(100);
 

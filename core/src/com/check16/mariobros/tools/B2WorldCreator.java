@@ -12,8 +12,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.check16.mariobros.MarioBros;
 import com.check16.mariobros.screens.PlayScreen;
-import com.check16.mariobros.sprites.items.Brick;
-import com.check16.mariobros.sprites.items.Coin;
+import com.check16.mariobros.sprites.tileObjects.Brick;
+import com.check16.mariobros.sprites.tileObjects.Coin;
 import com.check16.mariobros.sprites.enemies.Goomba;
 
 /**

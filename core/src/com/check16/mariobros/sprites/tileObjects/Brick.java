@@ -1,4 +1,4 @@
-package com.check16.mariobros.sprites.items;
+package com.check16.mariobros.sprites.tileObjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
